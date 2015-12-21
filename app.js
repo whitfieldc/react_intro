@@ -1,3 +1,8 @@
+let channels = [
+  {name: "Hardware Support"},
+  {name: "Software Support"}
+];
+
 class Channel extends React.Component{
   onClick(){
     console.log("I was clicked", this.props.name)
@@ -10,4 +15,41 @@ class Channel extends React.Component{
   }
 }
 
-ReactDOM.render(<Channel name="Hardware Support"/>, document.getElementById('app'));
+class ChannelList extends React.Component{
+  render(){
+    return (
+      <ul>
+        {this.props.channels.map( channel => {
+            return(
+              <Channel name={channel.name} />
+            )
+          }
+        )}
+      </ul>
+    )
+  }
+}
+
+class ChannelForm extends React.Component{
+  render(){
+    return (
+      <form>
+        <input type="text"/>
+      </form>
+    )
+  }
+}
+
+class ChannelSection extends React.Component{
+  render(){
+    return(
+      <div>
+        <ChannelList channels={channels} />
+        <ChannelForm />
+      </div>
+    )
+  }
+}
+
+
+ReactDOM.render(<ChannelSection />, document.getElementById('app'));
